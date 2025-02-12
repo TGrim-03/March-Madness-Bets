@@ -1,3 +1,8 @@
+We will use React.js for the frontend.
+We will use Java and Spring Boot framework for the backend. We will also be using Python to collect and scrape data.
+
+
+
 Here is where you will explain your plan for the Walking Skeleton.
 
 We will talk more about this in the future. In summary, the Walking Skeleton is a plan for setting up a minimal version of your tech stack. This is less than a MVP (minimum viable product) as this is not meant to be a product. It is to prove that you are able to integrate the three main components of your application: front end, back end, and database. 
