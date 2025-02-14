@@ -1,5 +1,9 @@
 We will use React.js for the frontend.
-We will use Java and Spring Boot framework for the backend. We will also be using Python to collect and scrape data.
+We will use Java for the backend. 
+We will also be using Python to collect and scrape data.
+We will use MySQL to store the data.
+
+The frontend will call the backend to get the data and populate the website. The backend will retrieve the data from MySQL, and the MySQL database will be populated with the data from the Python web-scrapper.
 
 
 
