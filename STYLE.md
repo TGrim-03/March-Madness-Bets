@@ -33,6 +33,19 @@ Whitespace and Formatting:
     -utilize standard whitespace managament (4 spaces of tabbing)
 
 Comment Style:
+    -Classes
+        -Class comments should be separated between an interface and an implementation in separate files
+        -Interface comments should abstract the class, describing the class and each field in simple English
+        -Implementation comments should provide information for how the class and methods were coded in plain English
+
+    -Methods
+        -Each method comment should describe the method, its function, as well as parameters and return values at the bottom of the description
+        -Exceptions or any odd functionalities should be clearly described
+        -In-method comments are only necessary when code is lengthy/complex
+
+    -Variables
+        -Each variable should have a short comment abstracting from the code
+        -A more-descriptive comment should be used with fields that are used oddly or complex
 
 File Management:
 
