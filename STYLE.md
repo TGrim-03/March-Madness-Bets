@@ -29,9 +29,8 @@ Naming Conventions:
         -Classes begin with a capital letter
         -Classes should not contain an underscore, but separate words with a capital letter
 
-Security:
-
 Whitespace and Formatting:
+    -utilize standard whitespace managament (4 spaces of tabbing)
 
 Comment Style:
 
