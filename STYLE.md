@@ -47,12 +47,25 @@ Comment Style:
         -Each variable should have a short comment abstracting from the code
         -A more-descriptive comment should be used with fields that are used oddly or complex
 
-File Management:
+Testing:
+    -Each class should have an automated unit test file
+    -Each test should be testing only 1 part of the program, keeping tests independent
+    -Each test file and individual test should have short, descriptive documentation
+    -Test names begin with "test", followed by the name of the method/function they are testing and any more description necessary
+    -Test files should be located near class files
 
-Class Guidelines:
+File Management:
+    -ALL project files should be easily found in one location, such as the project repository
+    -File groups should be separated based on the area of design (Frontend/Backend/DB), with a single file encapsulating all of them
+    -Each class file should have a interface file adjacent to it
 
 Exceptions:
+    -All exceptions should be well-documented and easily understandable for when they are thrown
 
 Gitlab Guidlines:
+    -Assign yourself issues BEFORE working on them
+    -Do not take issues that are already assigned to others unless agreed upon by both parties
+    -Do not assign issues to others without their acknowledgement
+    -Update others about merge requests when posted
 
 
