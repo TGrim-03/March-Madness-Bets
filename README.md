@@ -19,7 +19,7 @@ The example sections included in this document are not necessarily all the secti
 
 * This is Net Bets – a fun, interactive web application where users can bet on this year’s March Madness games using fake money. This project is designed to give fans an engaging experience. 
 
-Features include placing bets on bracket predictions, leaderboards, a stats dashboard, and periodic updates. 
+* Features include placing bets on bracket predictions, leaderboards, a stats dashboard, and periodic updates. 
 
 ### Customer
 
@@ -37,7 +37,6 @@ An archetypal customer is a student that is an avid fan of college basketball an
 
 #### Technology Stack
 
-Here are some sample technology stacks that you can use for inspiration:
 
 ```mermaid
 flowchart RL
@@ -53,8 +52,8 @@ subgraph Database
 	C[(MySQL)]
 end
 
-A <-->|"REST API"| B
-B <-->|Django ORM| C
+A <-->|" "| B
+B <-->| | C
 ```
 
 
