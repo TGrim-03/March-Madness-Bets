@@ -1,3 +1,12 @@
+We will use React.js for the frontend.
+We will use Java for the backend. 
+We will also be using Python to collect and scrape data.
+We will use MySQL to store the data.
+
+The frontend will call the backend to get the data and populate the website. The backend will retrieve the data from MySQL, and the MySQL database will be populated with the data from the Python web-scrapper.
+
+
+
 Here is where you will explain your plan for the Walking Skeleton.
 
 We will talk more about this in the future. In summary, the Walking Skeleton is a plan for setting up a minimal version of your tech stack. This is less than a MVP (minimum viable product) as this is not meant to be a product. It is to prove that you are able to integrate the three main components of your application: front end, back end, and database. 
