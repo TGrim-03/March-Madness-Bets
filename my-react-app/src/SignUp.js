@@ -24,17 +24,24 @@ const Signup = () => {
   //Handles changes to the form data by updating appropriate states defined above
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    //Ensures that the password and confirmation match as user types in the confirmation
+    setFormData((prevFormData) => {
+      const updatedFormData = { ...prevFormData, [name]: value };
+
+      if (name === "password" || name === "confirmPassword") {
+        setPasswordMatch(updatedFormData.password === updatedFormData.confirmPassword);
+      }
+
+      return updatedFormData;
+    });
 
     //Evaluates the password as user types in the password
     if (name === 'password') {
       setPasswordStrength(checkPasswordStrength(value));
     }
 
-    //Ensures that the password and confirmation match as user types in the confirmation
-    if (name === "password" | name === "confirmPassword") {
-        setPasswordMatch(formData.password === (name === 'password' ? value : formData.confirmPassword));
-    }
+
   };
 
   //Determines password strength and assigns keywords and colors accordingly
@@ -50,44 +57,58 @@ const Signup = () => {
 
     //Removes the whitespaces within the username field to ensure that the field is not empty
     if (formData.username.trim() === "") {
-        alert("Username can't be empty! Please enter a username :}")
-        return;
+      alert("Username can't be empty! Please enter a username :}")
+      return;
     }
 
     //Prevents submission if the passwords do not match
     if (!passwordMatch) {
-        alert("Your passwords do not match! Please check again :)");
-        return;
-      }
+      alert("Your passwords do not match! Please check again :)");
+      return;
+    }
 
     //Prevents submission if the password strength is too weak
     if (passwordStrength.text === "Weak") {
-        alert("Your password is too weak! Try making it stronger.");
-        return;
+      alert("Your password is too weak! Try making it stronger.");
+      return;
     }
 
     //Sets the state as true to allow successful submission and disabling of the signup button to prevent further submissions
     setIsSigningUp(true);
     try {
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
 
-      //Simulates a request delay to mock API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      //Waiting for a response from the backend
+      const data = await response.text();
+      console.log("Response from backend:", data);
 
-      console.log('Signup Data:', formData);
-      alert("Signup successful!");
+      //Alerting the user with the message received from backend
+      alert(data);
 
-      //Redirects the user to the home page
-      navigate("/");
+      if (response.ok) {
+        
+        // Store username in local storage
+        localStorage.setItem("signupUsername", formData.username);
+        
+        // Redirect to login page
+        navigate("/login");
+      }
     } catch (error) {
+      console.error("Error signing up:", error);
       alert("Signup failed! Please try again.");
     } finally {
-
-       // Reset loading state
       setIsSigningUp(false);
     }
   };
 
-  
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -148,7 +169,7 @@ const Signup = () => {
       {/*Displays submit button which is disabled when signing up*/}
       <button type="submit" disabled={isSigningUp}>
         {isSigningUp ? "Signing in..." : "Signup"}
-        </button>
+      </button>
       <p>
 
         {/*Link to login page for existing users*/}
