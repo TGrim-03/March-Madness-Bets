@@ -3,7 +3,10 @@ package com.example.demo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +53,20 @@ public class UserController {
         
         userDatabase.put("john_doe", user1);
         userDatabase.put("jane_smith", user2);
+    }
+
+    /**
+     * Retrieves all information for a specific user.
+     *
+     * @param username The username of the user.
+     * @return A ResponseEntity containing user information or an error message.
+     */
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserInfo(@PathVariable String username) {
+        if (userDatabase.containsKey(username)) {
+            return ResponseEntity.ok(userDatabase.get(username));
+        }
+        return ResponseEntity.badRequest().body("User not found");
     }
 
 }
