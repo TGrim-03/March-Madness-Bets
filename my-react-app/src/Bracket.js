@@ -133,7 +133,7 @@ const MarchMadnessBracket = () => {
       }}
     >
       <div style={{ 
-        borderBottom: '1px solid #eee', 
+        borderBottom: '3px solid brown', 
         padding: '3px 8px',
         display: 'flex',
         height: '22px',
@@ -178,7 +178,9 @@ const MarchMadnessBracket = () => {
         width: '100%',
         maxWidth: '1600px',
         backgroundColor: '#c8e6c9', // new change
-        margin: '0 auto'
+        paddingRight: '15px', 
+        paddingLeft: '10px', 
+
 
       }}>
         <h1 style={{ textAlign: 'center', margin: '20px 0' }}>NCAA March Madness Bracket 2025</h1>
@@ -403,7 +405,7 @@ const MarchMadnessBracket = () => {
               margin: '5px 0'
             }}>
               <div style={{ 
-                border: '1px solid #ccc',
+                border: '2px solid black',
                 padding: '8px',
                 width: '250px'
               }}>
@@ -412,7 +414,7 @@ const MarchMadnessBracket = () => {
                 <p>{regions[3].name} Winner</p>
               </div>
               <div style={{ 
-                border: '1px solid #ccc',
+                border: '2px solid black',
                 padding: '8px',
                 width: '250px'
               }}>
@@ -425,7 +427,7 @@ const MarchMadnessBracket = () => {
               <h2>NATIONAL CHAMPIONSHIP</h2>
               
               <div style={{ 
-                border: '1px solid #ccc',
+                border: '2px solid black',
                 padding: '8px',
                 width: '300px',
                 margin: '0 auto'
@@ -687,7 +689,7 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
           <div style={{ 
             position: 'relative',
             height: '200px',
-            width: '170px'
+            width: '150px'
           }}>
             {/* Sweet 16 box - centered between the two Round 2 boxes */}
             <div style={{ 
