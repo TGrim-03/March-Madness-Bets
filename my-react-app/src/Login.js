@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {CircleDollarSign as Money} from 'lucide-react';
 
@@ -15,6 +15,14 @@ const Login = () => {
   
   //Allows redirection after successful login
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem("signupUsername");
+    if (savedUsername) {
+        setFormData((prev) => ({ ...prev, username: savedUsername }));
+        localStorage.removeItem("signupUsername"); // Clear after autofill
+    }
+  }, []);
 
   //Updates the corresponding field in formData when user types
   const handleChange = (e) => {
@@ -39,22 +47,30 @@ const Login = () => {
         return;
     }
 
-    ////Sets the state as true to allow successful submission and disabling of the login button to prevent further submissions
+    //Sets the state as true to allow successful submission and disabling of the login button to prevent further submissions
     setIsLoggingIn(true);
+
+    //Sends a POST request to the backend to login.
+    //The request includes the username and password from the form input.
     try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      //Simulates a request delay to mock API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const data = await response.text();
 
-      console.log('Login Data:', formData);
-      alert("Login successful!");
-
-      //Redirects the user to the home page
-      navigate("/");
+      if (response.ok) {
+        alert("Login successful!");
+        navigate("/dashboard"); // Redirect after successful login
+      } else {
+        alert(data); // Show error message from backend
+      }
     } catch (error) {
       alert("Login failed! Please try again.");
+      console.error("Login error:", error);
     } finally {
-      // Reset loading state
       setIsLoggingIn(false);
     }
   };
