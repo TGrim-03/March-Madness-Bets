@@ -182,24 +182,29 @@ const MarchMadnessBracket = () => {
       {/* Display Selected Matchup Odds */}
 {selectedMatchup && (
   <div style={{ 
-    margin: '0 auto 30px auto',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     maxWidth: '950px',
+    width: '90%',
     backgroundColor: '#1c1c1c',
     color: 'white',
     border: '1px solid #333',
     borderRadius: '4px',
     overflow: 'hidden',
-    position: 'relative'
+    zIndex: 100,
+    boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
   }}>
     {/* Close Button */}
     <div 
       onClick={() => setSelectedMatchup(null)}
       style={{
         position: 'absolute',
-        top: '0px',
-        right: '0px',
-        width: '30px',
-        height: '30px',
+        top: '00px',
+        right: '00px',
+        width: '40px',
+        height: '40px',
         borderRadius: '50%',
         backgroundColor: '#ff5252',
         display: 'flex',
@@ -210,7 +215,7 @@ const MarchMadnessBracket = () => {
         fontSize: '20px',
         fontWeight: 'bold',
         color: 'white',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+        
       }}
     >
       ×
