@@ -45,7 +45,7 @@ subgraph Front End
 end
 	
 subgraph Back End
-	B(Java)
+	B(Java Spring Boot)
 end
 	
 subgraph Database
@@ -61,7 +61,7 @@ Frontend:
 * React.js
 
 Backend: 
-* Java
+* Java Spring Boot
 
 Data: 
 * Relational Database
@@ -80,12 +80,11 @@ erDiagram
 
     User {
         int user_id PK
-        string name
-        string email
-        string phone
+        string username
+        string password
     }
 
-    Odds {
+    Lines {
         int odds_id PK
     }
 
