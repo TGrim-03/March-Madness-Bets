@@ -180,6 +180,7 @@ const MarchMadnessBracket = () => {
         backgroundColor: '#c8e6c9', // new change
         paddingRight: '15px', 
         paddingLeft: '10px', 
+        marginTop: '250px',    // Change this line to add more white space 
 
 
       }}>
