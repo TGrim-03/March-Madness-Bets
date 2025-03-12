@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
 
     //Stores the username and password as a form to dynamically track as the user inputs data
@@ -76,7 +75,6 @@ const Login = () => {
   };
 
   return (
-    <div>
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
 
@@ -120,8 +118,6 @@ const Login = () => {
         Don't have an account? <Link to="/signup">Signup</Link>
       </p>
     </form>
-    </div>
-    
   );
 };
 
