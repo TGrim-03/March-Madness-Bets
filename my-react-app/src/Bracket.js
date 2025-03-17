@@ -124,11 +124,11 @@ const MarchMadnessBracket = () => {
       className="matchup-box"
       onClick={onClick}
       style={{ 
-        border: '2px solid black', //new change
+        border: '2px solid white', 
         borderRadius: '2px',
         marginBottom: '2px',
         cursor: 'pointer',
-        //backgroundColor: 'black',
+        backgroundColor: 'orange',
         width: '200px'
       }}
     >
@@ -177,14 +177,10 @@ const MarchMadnessBracket = () => {
         flexDirection: 'column',
         width: '100%',
         maxWidth: '1600px',
-        backgroundColor: '#c8e6c9', // new change
+        backgroundColor: '#001440', // new change
         paddingRight: '15px', 
         paddingLeft: '10px', 
-        marginTop: '250px',    // Change this line to add more white space 
-
-
       }}>
-        <h1 style={{ textAlign: 'center', margin: '20px 0' }}>NCAA March Madness Bracket 2025</h1>
         
      {/* Display Selected Matchup Odds */}
 {selectedMatchup && (
@@ -394,7 +390,7 @@ const MarchMadnessBracket = () => {
           }}>
             {/* West Region */}
             <div style={{ width: '45%' }}>
-              <h3 style={{ textAlign: 'center' }}>{regions[0].name} Region</h3>
+              <h3 style={{ textAlign: 'center', color: "white", fontFamily: "Arial" }}>{regions[0].name} Region</h3>
               <BracketRegion 
                 region={regions[0]} 
                 onMatchupClick={handleMatchupClick} 
@@ -403,7 +399,7 @@ const MarchMadnessBracket = () => {
             
             {/* East Region */}
             <div style={{ width: '45%' }}>
-              <h3 style={{ textAlign: 'center' }}>{regions[1].name} Region</h3>
+              <h3 style={{ textAlign: 'center', color: "white", fontFamily: "Arial" }}>{regions[1].name} Region</h3>
               <BracketRegion 
                 region={regions[1]} 
                 onMatchupClick={handleMatchupClick}
@@ -416,7 +412,9 @@ const MarchMadnessBracket = () => {
           <div style={{ 
             width: '100%', 
             textAlign: 'center',
-            margin: '5px 0'
+            margin: '5px 0',
+            color: "white", 
+            fontFamily: "Arial"
           }}>
             <h2>FINAL FOUR</h2>
             
@@ -426,7 +424,7 @@ const MarchMadnessBracket = () => {
               margin: '5px 0'
             }}>
               <div style={{ 
-                border: '2px solid black',
+                border: '2px solid orange',
                 padding: '8px',
                 width: '250px'
               }}>
@@ -435,7 +433,7 @@ const MarchMadnessBracket = () => {
                 <p>{regions[3].name} Winner</p>
               </div>
               <div style={{ 
-                border: '2px solid black',
+                border: '2px solid orange',
                 padding: '8px',
                 width: '250px'
               }}>
@@ -448,7 +446,7 @@ const MarchMadnessBracket = () => {
               <h2>NATIONAL CHAMPIONSHIP</h2>
               
               <div style={{ 
-                border: '2px solid black',
+                border: '2px solid orange',
                 padding: '8px',
                 width: '300px',
                 margin: '0 auto'
@@ -468,7 +466,7 @@ const MarchMadnessBracket = () => {
           }}>
             {/* South Region */}
             <div style={{ width: '45%' }}>
-              <h3 style={{ textAlign: 'center' }}>{regions[2].name} Region</h3>
+              <h3 style={{ textAlign: 'center', color: "white", fontFamily: "Arial" }}>{regions[2].name} Region</h3>
               <BracketRegion 
                 region={regions[2]} 
                 onMatchupClick={handleMatchupClick} 
@@ -477,7 +475,7 @@ const MarchMadnessBracket = () => {
             
             {/* Midwest Region */}
             <div style={{ width: '45%' }}>
-              <h3 style={{ textAlign: 'center' }}>{regions[3].name} Region</h3>
+              <h3 style={{ textAlign: 'center', color: "white", fontFamily: "Arial" }}>{regions[3].name} Region</h3>
               <BracketRegion 
                 region={regions[3]} 
                 onMatchupClick={handleMatchupClick}
@@ -523,7 +521,9 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
             width: '170px', 
             textAlign: 'center', 
             fontWeight: 'bold',
-            fontSize: '14px'
+            fontSize: '14px',
+            color: "white", 
+            fontFamily: "Arial"
           }}>
             Round 2
           </div>
@@ -531,7 +531,9 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
             width: '170px', 
             textAlign: 'center', 
             fontWeight: 'bold',
-            fontSize: '14px'
+            fontSize: '14px',
+            color: "white", 
+            fontFamily: "Arial"
           }}>
             Sweet 16
           </div>
@@ -539,7 +541,9 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
             width: '150px', 
             textAlign: 'center', 
             fontWeight: 'bold',
-            fontSize: '14px'
+            fontSize: '14px',
+            color: "white", 
+            fontFamily: "Arial"
           }}>
             Elite 8
           </div>
@@ -575,32 +579,31 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
             {/* Round 2 box BETWEEN 1/16 and 8/9 matchups */}
             <div style={{ 
               position: 'absolute',
-              top: '35px',
-              left: 0,
+              top: '38px',
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-                <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+                <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
 
             </div>
             
             {/* Round 2 box BETWEEN 5/12 and 4/13 matchups */}
             <div style={{ 
               position: 'absolute',
-              top: '155px',
+              top: '170px',
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
           </div>
           
@@ -613,16 +616,16 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
             {/* Sweet 16 box - centered between the two Round 2 boxes */}
             <div style={{ 
               position: 'absolute',
-              top: '95px',
+              top: '105px',
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
           </div>
           
@@ -639,12 +642,12 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
           </div>
         </div>
@@ -682,27 +685,27 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
             
             {/* Second Round 2 box - Between 7/10 and 2/15 matchups */}
             <div style={{ 
               position: 'absolute',
-              top: '155px',
+              top: '170px',
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
           </div>
           
@@ -719,12 +722,12 @@ const BracketRegion = ({ region, onMatchupClick, reversed = false }) => {
               left: 0,
               height: '40px',
               width: '100%',
-              border: '2px solid black',
+              border: '2px solid orange',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{ width: '100%', height: '2px', backgroundColor: 'black', position: 'absolute', left: 0 }}></div>
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'white', position: 'absolute', left: 0 }}></div>
             </div>
           </div>
         </div>
