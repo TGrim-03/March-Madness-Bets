@@ -6,11 +6,15 @@ import com.example.demo.repository.MarchMadnessTeamRepository;
 import com.example.demo.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +39,8 @@ public class MainController {
     @Autowired
     private MarchMadnessTeamRepository marchMadnessTeamRepository;
 
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     /**
      * Adds a new User to the MySQL Database with a unique ID, a username, and a password
      *
@@ -42,6 +48,7 @@ public class MainController {
      * @param password the user-decided password
      * @return a "saved" string if the user was successfully added to the Database
      */
+
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String username
             , @RequestParam String password) {
@@ -56,10 +63,43 @@ public class MainController {
     }
 
     /**
+<<<<<<< demo/src/main/java/com/example/demo/controller/MainController.java
+     * Handles user signup by adding a new username and password to the database.
+     * 
+     * This endpoint allows a new user to create an account by providing a username and password.
+     * The password is securely hashed before being stored in the database. If the username 
+     * is already taken, an error message is returned.
+     * 
+     * @param user The user object containing the username and password in the request body.
+     * @return A ResponseEntity indicating success or failure while signing up.
+     */
+    @PostMapping(path = "/signup")
+    public ResponseEntity<String> signUpUser(@RequestBody User user) {
+
+        String username = user.getUsername();
+        String password = user.getPassword();
+
+        // Check if the username is already taken
+        Optional<User> existingUser = userRepository.findByUsername(username);
+        if (existingUser.isPresent()) {
+            return ResponseEntity.badRequest().body("Error: Username is already taken!");
+        }
+
+        // Encode the password before saving it in the database
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setPassword(encodedPassword);
+
+        // Save the user to the database
+        userRepository.save(user);
+        return ResponseEntity.ok("User signed up successfully!");
+    }
+
+=======
      * Finds and returns an iterable of all users and user information stored in the MySQL Database
      *
      * @return an Iterable of all users in the database
      */
+>>>>>>> demo/src/main/java/com/example/demo/controller/MainController.java
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         // This returns a JSON or XML with the users
