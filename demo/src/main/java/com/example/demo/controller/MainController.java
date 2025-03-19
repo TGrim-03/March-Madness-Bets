@@ -21,7 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * This class controls flow to and from the database using GET and POST calls. The backend listens
- * on port 3306 and uses calls to query and modify the database.
+ * on port 8080 and uses calls to query and modify the database.
+ *
+ * DEVELOPERS: To access the database and run the backend, you must first open a ssh tunnel with the terminal
+ * command below. This terminal will be a different one than you run the backend in:
+ *
+ * ssh -L localhost:3306:localhost:3306 [CS_USERNAME]@cs506x14.cs.wisc.edu
  */
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
@@ -36,6 +41,13 @@ public class MainController {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    /**
+     * Adds a new User to the MySQL Database with a unique ID, a username, and a password
+     *
+     * @param username the user-decided username
+     * @param password the user-decided password
+     * @return a "saved" string if the user was successfully added to the Database
+     */
 
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String username
@@ -51,6 +63,7 @@ public class MainController {
     }
 
     /**
+<<<<<<< demo/src/main/java/com/example/demo/controller/MainController.java
      * Handles user signup by adding a new username and password to the database.
      * 
      * This endpoint allows a new user to create an account by providing a username and password.
@@ -81,10 +94,27 @@ public class MainController {
         return ResponseEntity.ok("User signed up successfully!");
     }
 
+=======
+     * Finds and returns an iterable of all users and user information stored in the MySQL Database
+     *
+     * @return an Iterable of all users in the database
+     */
+>>>>>>> demo/src/main/java/com/example/demo/controller/MainController.java
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
+    }
+
+    /**
+     * Finds and returns a specific user in the MySQL Database by their unique username
+     *
+     * @param username the username of the given user
+     * @return the user entity if it exists, or null if there does not exist a user with the given username
+     */
+    @GetMapping(path="/user")
+    public @ResponseBody User getUserByUsername(@RequestParam String username) {
+        return userRepository.findByUsername(username);
     }
 
     // Make get call for specific user
@@ -113,6 +143,4 @@ public class MainController {
     public @ResponseBody List<MarchMadnessTeam> getAllTeams() {
         return marchMadnessTeamRepository.findAll();
     }
-
-
 }
