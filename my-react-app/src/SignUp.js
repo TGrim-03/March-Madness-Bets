@@ -46,10 +46,40 @@ const Signup = () => {
 
   //Determines password strength and assigns keywords and colors accordingly
   const checkPasswordStrength = (password) => {
-    if (password.length === 0) return "";
-    if (password.length < 6 && password.length > 0) return { text: "Weak", color: "red" };
-    if (password.length < 10) return { text: "Medium", color: "orange" };
-    return { text: "Strong", color: "green" };
+
+    // Default strength is set to "Weak" with red color
+    let strength = {
+      text: "Weak",
+      color: "red"
+    };
+  
+    // Password should be at least 8 characters long
+    const lengthCriteria = password.length >= 8;
+
+    // Password should have at least one uppercase letter
+    const uppercaseCriteria = /[A-Z]/.test(password);
+
+    // Password should contain at least one lowercase letter
+    const lowercaseCriteria = /[a-z]/.test(password);
+
+    // Password should contain at least one numeric digit
+    const numberCriteria = /[0-9]/.test(password);
+
+    // Password should contain at least one special character
+    const specialCharCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  
+    // Count the number of criteria that the password passes
+    const passedCriteria = [lengthCriteria, uppercaseCriteria, lowercaseCriteria, numberCriteria, specialCharCriteria].filter(Boolean).length;
+  
+    // Determine password strength based on the number of criteria met
+    if (passedCriteria >= 4) {
+      strength = { text: "Strong", color: "green" };
+    } else if (passedCriteria >= 3) {
+      strength = { text: "Medium", color: "orange" };
+    }
+  
+    // Return the password strength
+    return strength;
   };
 
   //Handles validation checks when the user submits the form
@@ -80,7 +110,7 @@ const Signup = () => {
     //Sends a POST request to the backend to register a new user.
     //The request includes the username and password from the form input.
     try {
-      const response = await fetch("http://localhost:8080/api/auth/signup", {
+      const response = await fetch("http://localhost:8080/demo/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
