@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -126,5 +128,38 @@ public class UserController {
         }
         return ResponseEntity.badRequest().body("User not found");
     }
-
+    
+    /**
+     * Creates a new user with the provided information.
+     *
+     * @param userData A map containing user data with keys "name", "username", "password", and "amount".
+     * @return A ResponseEntity containing the created user information or an error message.
+     */
+    @PostMapping
+    public ResponseEntity<?> createUser(@RequestBody Map<String, Object> userData) {
+        String username = (String) userData.get("username");
+        
+        // Check if username already exists
+        if (userDatabase.containsKey(username)) {
+            return ResponseEntity.badRequest().body("Username already exists");
+        }
+        
+        // Validate required fields
+        if (username == null || userData.get("name") == null || 
+            userData.get("password") == null || userData.get("amount") == null) {
+            return ResponseEntity.badRequest().body("All fields (name, username, password, amount) are required");
+        }
+        
+        // Create new user entry
+        Map<String, Object> newUser = new HashMap<>();
+        newUser.put("name", userData.get("name"));
+        newUser.put("username", username);
+        newUser.put("password", userData.get("password"));
+        newUser.put("amount", userData.get("amount"));
+        
+        // Add to database
+        userDatabase.put(username, newUser);
+        
+        return ResponseEntity.ok(newUser);
+    }
 }
