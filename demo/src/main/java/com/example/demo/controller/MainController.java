@@ -93,6 +93,23 @@ public class MainController {
         userRepository.save(user);
         return ResponseEntity.ok(Map.of("message", "User signed up successfully!"));
     }
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<?> loginUser(@RequestBody User loginRequest) {
+
+        Optional<User> user = userRepository.findByUsername(loginRequest.getUsername());
+
+
+        if (user.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found.");
+        }
+
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
+            return ResponseEntity.status(401).body("Incorrect password.");
+        }
+
+        return ResponseEntity.ok(user);
+    }
     /*
      * Finds and returns an iterable of all users and user information stored in the MySQL Database
      *
