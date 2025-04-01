@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {CircleDollarSign as Money} from 'lucide-react';
 import { AuthContext } from './Context/AuthContext';
+import './Signup.css';
 
 const Signup = () => {
 
@@ -162,70 +163,27 @@ const Signup = () => {
 
   // Return UI
   return (
-    <div 
-      style={{ 
-        backgroundImage: `url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2070')`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        minHeight: '100vh',
-        width: '100vw',
-        margin: 0,
-        padding: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: 'hidden'
-      }}
-    >
+    <div className= "signup-background">
       {/* Signup card */}
-      <div 
-        style={{
-          backgroundColor: '#808080CC', 
-          borderRadius: '18px',
-          boxShadow: '0 28px 52px -10px rgba(0, 0, 0, 0.9)',
-          padding: '35px',
-          width: '100%',
-          maxWidth: '500px',
-          border: '2px solid #9CA3AF',
-          zIndex: 10
-        }}
-      >
+      <div className = "signup-card">
         {/* Styling for the Container */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="signup-header">
           {/* Website title */}
           <div style={{ margin: '0', padding: '0', display: 'flex', justifyContent: 'center', marginTop: '-5px' }}>
-            <p style={{ 
-              background: 'linear-gradient(to right, #FF8C00, #FFA500, #FFD700)',
-              fontFamily: "Impact, Arial Black, sans-serif", 
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontSize: '38px', 
-              margin: "0", 
-              padding: "0",
-              letterSpacing: '2px',
-              textShadow: '4px 4px 6px rgba(0, 0, 0, 0.2)',
-              textTransform: 'uppercase', 
-              display: 'inline-block'
-            }}>
+            <p className = "signup-title">
               Nets and Bets
             </p>
           </div>
-          
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <p style={{ color: 'white', fontFamily: "Arial", margin: "0", padding: "0" }}>
+            <p className = 'signup-subtitle'>
               Sign up to join the madness!
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ marginTop: '26px', marginRight:"20px", width: '100%' }}>
+          <form onSubmit={handleSubmit} className="signup-form">
             {/* Name field - NEW */}
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="name" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+            <div className="signup-form-group">
+              <label htmlFor="name" className='signup-label'>
                 Full Name
               </label>
               <input
@@ -235,20 +193,12 @@ const Signup = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{
-                  backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                  fontFamily: "Arial",
-                  color: 'white',
-                  padding: '12px',
-                  borderRadius: '10px',
-                  width: '100%',
-                  border: '1px solid rgb(211, 87, 9)',
-                }}
+                className='signup-input'
               />
             </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="username" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+            <div className='signup-form-group'>
+              <label htmlFor="username" className='signup-label'>
                 Username
               </label>
               <input
@@ -258,20 +208,12 @@ const Signup = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{
-                  backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                  fontFamily: "Arial",
-                  color: 'white',
-                  padding: '12px',
-                  borderRadius: '10px',
-                  width: '100%',
-                  border: '1px solid rgb(211, 87, 9)',
-                }}
+                className='signup-input'
               />
             </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="password" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+            <div className='signup-form-group'>
+              <label htmlFor="password" className='signup-label'>
                 Password
               </label>
               <div style={{ position: 'relative' }}>
@@ -283,38 +225,18 @@ const Signup = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  style={{
-                    backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                    fontFamily: "Arial",
-                    color: 'white',
-                    padding: '12px',
-                    borderRadius: '10px',
-                    width: '100%',
-                    border: '1px solid rgb(211, 87, 9)',
-                  }}
+                  className='signup-input'
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  style={{
-                    position: 'absolute',
-                    left: '95%',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: '#9CA3AF',
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '14px'
-                  }}
+                  className='password-toggle-btn'
                 >
                   {showPassword ? 'Hide' : 'Show'}
                 </button>
               </div>
               {passwordStrength && (
-                <p style={{ 
-                  fontSize: '16px', 
-                  fontFamily: "Arial",
-                  marginTop: '6px',
+                <p className="password-strength" style={{ 
                   color: passwordStrength.color === 'green' ? '#10B981' : 
                          passwordStrength.color === 'orange' ? '#F59E0B' : '#EF4444'
                 }}>
@@ -323,8 +245,8 @@ const Signup = () => {
               )}
             </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="confirmPassword" style={{ color: 'white', fontWeight: '600', fontFamily: "Arial", marginBottom: '6px', display: 'block', }}>
+            <div className='signup-form-group'>
+              <label htmlFor="confirmPassword" className='signup-label'>
                 Confirm Password
               </label>
               <div style={{ position: 'relative' }}>
@@ -336,25 +258,18 @@ const Signup = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  style={{
-                    backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                    fontFamily: "Arial",
-                    color: 'white',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    width: '100%',
-                    border: '1px solid rgb(211, 87, 9)',
-                  }}
+                  className='signup-input'
                 />
               </div>
               {formData.confirmPassword && !passwordMatch && (
-                <p style={{ color: 'red', fontFamily: "Arial", fontSize: '16px', marginTop: '6px' }}>Passwords do not match</p>
+                <p className="password-mismatch">
+                  Passwords do not match</p>
               )}
             </div>
 
             {/* Initial amount */}
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="amount" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+            <div className='signup-form-group'>
+              <label htmlFor="amount" className='signup-label'>
                 Initial Balance ($)
               </label>
               <input
@@ -365,54 +280,35 @@ const Signup = () => {
                 value={formData.amount}
                 onChange={handleChange}
                 required
-                style={{
-                  backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                  fontFamily: "Arial",
-                  color: 'white',
-                  padding: '12px',
-                  borderRadius: '10px',
-                  width: '100%',
-                  border: '1px solid rgb(211, 87, 9)',
-                }}
+                className='signup-input'
               />
             </div>
 
             <button 
               type="submit" 
-              style={{
-                width: '105%',
-                backgroundColor: '#FF5F1F',
-                color: 'white',
-                padding: '10px',
-                borderRadius: '10px',
-                fontWeight: 'bold',
-                fontSize: '18px',
-                border: 'none',
-                boxShadow: '0 4px 6px -1px rgba(1, 1, 1, 0.1)',
-                marginTop: '16px'
-              }}
+              className='signup-submit-btn'
               disabled={isSigningUp}
             >
               {isSigningUp ? 'Signing Up!!' : 'Sign Up'}
             </button>
           </form>
 
-          <div style={{ textAlign: 'center', width: '100%', marginTop: '20px', }}>
-            <p style={{ color: 'white', fontFamily: "Arial" }}>
-              <span style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginBottom: '10px' }}>
-                <Money style={{color: "green", height: "30px", width: "50px"}}/>
-                <Money style={{color: "green", height: "30px", width: "50px"}} />
-                <Money style={{color: "green", height: "30px", width: "50px"}} />
-                <Money style={{color: "green", height: "30px", width: "50px"}} />
+          <div className='signup-footer'>
+            <p className='signup-footer-text'>
+              <span className='money-icons'>
+                <Money className='icon'/>
+                <Money className='icon'/>
+                <Money className='icon'/>
+                <Money className='icon'/>
               </span>
               Already have an account?{" "}
-              <Link to="/login" style={{ color: '#FF5F1F', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+              <Link to="/login" className= "signup-footer-link">
                 Log in
               </Link>
             </p>
-            <p style={{ color: 'white', fontFamily: "Arial", marginTop: "2px" }}>
+            <p className='signup-footer-text'>
                Go back?{" "}
-              <Link to="/" style={{ color: '#FF5F1F', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+              <Link to="/" className='signup-footer-link'>
                 Home
               </Link>
             </p>

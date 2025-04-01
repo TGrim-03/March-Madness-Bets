@@ -1,35 +1,228 @@
-.home {
+/* Global Reset */
+html, body {
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Wrapper */
+  .home-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    text-align: center;
-    position: relative;
     width: 100%;
-    padding-top: 80px;
-    padding-bottom: 40px;
-}
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
   
-.home h1 {
-    font-size: 48px;
+  /* Navbar */
+  .navbar {
+    top: 0;
+    z-index: 55;
+    width: 100%;
+    background-color: #363636;
+    border-bottom: 1px solid rgba(236, 231, 231, 0.12);
+  }
+  
+  .nav-content {
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .nav-logo {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  
+  .logo-text {
     font-weight: bold;
-    margin-bottom: 30px;
-}
-.button-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-.button-container .button {
-    margin-left: 10px;
-    text-decoration: none;
-    padding: 10px 15px;
-    background-color: #0078d4;
+    font-family: Arial;
+    font-size: 1.5rem;
     color: white;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-.button-container .button:hover {
-    background-color: #005bb5;
-}
+  }
+  
+  .nav-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-right: 1rem;
+    color: white;
+    font-family: Arial;
+  }
+  
+  .button-orange {
+    background-color: #f97316;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+  }
+  
+  .button-orange:hover {
+    background-color: #BE5504;
+  }
+  
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 93vh;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2070');
+    background-size: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero-content {
+    width: 100%;
+    position: relative;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    font-family: Arial;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-highlight {
+    color: #f97316;
+    font-style: italic;
+  }
+  
+  .hero-description {
+    font-size: 1.5rem;
+    font-family: Arial;
+    color: white;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+  
+  /* Section: Tournament */
+  .tournament-section {
+    background: linear-gradient(to bottom, rgba(249, 116, 22, 0.97), rgba(234, 90, 12, 0.92));
+    padding: 3rem 0;
+    width: 100%;
+  }
+  
+  .tournament-header {
+    font-size: 2.5rem;
+    font-family: Arial;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+  
+  .tournament-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 0.7rem;
+    padding: 1rem;
+    color: white;
+  }
+  
+  .card-icon {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-family: Arial;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .card-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: Arial;
+  }
+  
+  /* Bracket Section */
+  .bracket-section {
+    background-color: #001440;
+    width: 100%;
+  }
+  
+  .bracket-wrapper {
+    width: 100%;
+    min-height: 95vh;
+    text-align: center;
+    color: white;
+    font-family: Arial;
+  }
+  
+  .bracket-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bracket-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: black;
+    color: white;
+    font-family: Arial;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-text {
+    font-size: 0.875rem;
+  }
+  

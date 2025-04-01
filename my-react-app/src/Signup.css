@@ -1,0 +1,174 @@
+/* Full page background setup */
+.signup-background {
+    background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  
+  /* Card container */
+  .signup-card {
+    background-color: #808080CC;
+    border-radius: 18px;
+    box-shadow: 0 28px 52px -10px rgba(0, 0, 0, 0.9);
+    padding: 35px;
+    width: 100%;
+    max-width: 500px;
+    border: 2px solid #9CA3AF;
+    z-index: 10;
+  }
+  
+  /* Header */
+  .signup-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .signup-title {
+    background: linear-gradient(to right, #FF8C00, #FFA500, #FFD700);
+    font-family: "Impact, Arial Black, sans-serif";
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 38px;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  
+  .signup-subtitle {
+    color: white;
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Form */
+  .signup-form {
+    margin-top: 26px;
+    margin-right: 20px;
+    width: 100%;
+  }
+  
+  .signup-form-group {
+    margin-bottom: 16px;
+  }
+  
+  .signup-label {
+    color: white;
+    font-weight: 700;
+    font-family: Arial;
+    margin-bottom: 6px;
+    display: block;
+  }
+  
+  .signup-input {
+    background-color: rgba(22, 28, 39, 0.8);
+    font-family: Arial;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid rgb(211, 87, 9);
+  }
+  
+  /* Password visibility toggle */
+  .password-toggle-btn {
+    position: absolute;
+    left: 95%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Password strength */
+  .password-strength {
+    font-size: 16px;
+    font-family: Arial;
+    margin-top: 6px;
+  }
+  
+  .password-strength.green {
+    color: #10B981;
+  }
+  
+  .password-strength.orange {
+    color: #F59E0B;
+  }
+  
+  .password-strength.red {
+    color: #EF4444;
+  }
+  
+  .password-mismatch {
+    color: red;
+    font-family: Arial;
+    font-size: 16px;
+    margin-top: 6px;
+  }
+  
+  /* Submit button */
+  .signup-submit-btn {
+    width: 105%;
+    background-color: #FF5F1F;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(1, 1, 1, 0.1);
+    margin-top: 16px;
+  }
+  
+  /* Footer */
+  .signup-footer {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .signup-footer-text {
+    color: white;
+    font-family: Arial;
+    margin-top: 2px;
+  }
+  
+  .money-icons {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .signup-footer-link {
+    color: #FF5F1F;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .icon {
+    color: green;
+    height: 30px;
+    width: 50px;
+  }
+  
