@@ -166,9 +166,7 @@ const MarchMadnessBracket = () => {
     };
   };
 
-// Don't forget to add this in your component
 // Reset selected bet when opening a new matchup or closing the popup
-// In handleMatchupClick:
 const handleMatchupClick = (matchup) => {
   setSelectedMatchup(matchup);
   setSelectedBet(null);
@@ -178,13 +176,12 @@ const handleMatchupClick = (matchup) => {
 <div className="close-button" onClick={() => {
   setSelectedMatchup(null);
   setSelectedBet(null);
-}}>×</div>
+}}>
+</div>
 
-  /*
-    New code
-  */
+ 
   
-  // Add this state to your component
+// Add this state to your component
 const [selectedBet, setSelectedBet] = useState(null);
 
 // Add this handler function
@@ -220,24 +217,6 @@ const shouldDisableBet = (betType, team, value) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
   // State for tracking which matchup is selected
   const [selectedMatchup, setSelectedMatchup] = useState(null);
 
@@ -254,7 +233,6 @@ const shouldDisableBet = (betType, team, value) => {
     }
     return matchups;
   };
-
 
 
   // Create first round matchups for each region
@@ -359,7 +337,6 @@ const shouldDisableBet = (betType, team, value) => {
     );
   };
 
-  
 
   // Main component for the entire bracket view
   const BracketView = () => {
