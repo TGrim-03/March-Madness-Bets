@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CircleDollarSign, Calendar, Trophy, LogOut, User } from "lucide-react";
 import MarchMadnessBracket from './Bracket'; 
 import { AuthContext } from './Context/AuthContext';
+import './Home.css';
 
-// This removes default padding and margins from the HTML and body elements
-const globalStyles = `
-  html, body {
-    margin: 0;
-    width: 100%;
-    overflow-x: hidden;
-  }
-`;
+// This global style can be removed since it's defined in your CSS now
+// const globalStyles = `
+//   html, body {
+//     margin: 0;
+//     width: 100%;
+//     overflow-x: hidden;
+//   }
+// `;
 
 export default function Home() {
   const { isLoggedIn, user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
   
   const handleLogout = () => {
     logout();
@@ -23,62 +23,30 @@ export default function Home() {
   };
 
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
-      
-      <div style={{ 
-        display: "flex", 
-        flexDirection: "column", 
-        width: "100%",
-        height: "100%",
-        padding: 0,
-        margin: 0,
-      }}>
-        
+    <>      
+      <div className="home-container">
         {/* NavBar */}
-        <nav style={{ 
-          top: 0, 
-          zIndex: 55, 
-          width: "100%", 
-          backgroundColor: "#363636", 
-          borderBottom: "1px solid rgba(236, 231, 231, 0.12)"
-        }}>
-          <div style={{ 
-            margin: "0 auto", 
-            padding: "1rem 1rem", 
-            display: "flex", 
-            justifyContent: "space-between" 
-          }}>
+        <nav className="navbar">
+          <div className="nav-content">
             {/* Logo */}
-            <div style={{ display: "flex", gap: "0.8rem", alignItems: "center" }}>
+            <div className="nav-logo">
               <CircleDollarSign style={{ height: "1.8rem", width: "1.8rem", color: "#ED7014" }} />
-              <span style={{ fontWeight: "bold", fontFamily: "Arial", fontSize: "1.5rem", color: "white" }}>Nets and Bets</span>
+              <span className="logo-text">Nets and Bets</span>
             </div>
 
             {/* Conditional Nav Links */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               {isLoggedIn ? (
                 <>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", marginRight: "1rem" }}>
+                  <div className="nav-user-info">
                     <User style={{ height: "1.2rem", width: "1.2rem", color: "white" }} />
-                    <span style={{ color: "white", fontFamily: "Arial" }}>
+                    <span>
                       {user?.name || user?.username} - ${user?.amount}
                     </span>
                   </div>
                   <button 
                     onClick={handleLogout}
-                    style={{ 
-                      backgroundColor: "#f97316", 
-                      color: "white", 
-                      padding: "0.5rem 1rem", 
-                      borderRadius: "0.3rem",
-                      border: "none",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.3rem"
-                    }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = "#BE5504"}
-                    onMouseOut={(e) => e.target.style.backgroundColor = "#ED7014"}
+                    className="button-orange"
                   >
                     <LogOut style={{ height: "1rem", width: "1rem" }} />
                     Logout
@@ -86,30 +54,13 @@ export default function Home() {
                 </>
               ) : (
                 <>
-                  <Link to="/signup">
-                    <button style={{ 
-                      backgroundColor: "#f97316", 
-                      color: "white", 
-                      padding: "0.5rem 1rem", 
-                      borderRadius: "0.3rem",
-                      border: "none",
-                    }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = "#BE5504"}
-                    onMouseOut={(e) => e.target.style.backgroundColor = "#ED7014"}>
+                  <Link to="/signup" className="nav-link">
+                    <button className="button-orange">
                       Sign Up
                     </button>
                   </Link>
-                  <Link to="/login">
-                    <button style={{ 
-                      backgroundColor: "#ED7014",
-                      color: "white", 
-                      padding: "0.5rem 1rem", 
-                      borderRadius: "0.3rem",
-                      border: "none",
-                    }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = "#BE5504"}
-                    onMouseOut={(e) => e.target.style.backgroundColor = "#ED7014"}
-                    >
+                  <Link to="/login" className="nav-link">
+                    <button className="button-orange">
                       Log In
                     </button>
                   </Link>
@@ -120,46 +71,16 @@ export default function Home() {
         </nav>
 
         {/* Hero Section */} 
-        <section style={{
-          position: "relative",
-          minHeight: "93vh",
-          width: "100%",
-          margin: 0,
-          display: "flex",
-          alignItems: "center",
-          backgroundImage: "url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2070')",
-          backgroundSize: "cover"
-        }}>
-
+        <section className="hero">
           {/* Background dark Overlay */}
-          <div style={{ 
-            inset: 0, 
-            position: "absolute", 
-            backgroundColor: "rgba(0, 0, 0, 0.7)" 
-          }}/>
+          <div className="hero-overlay"/>
 
           {/* Content */}
-          <div style={{ 
-            width: "100%", 
-            position: "relative", 
-            textAlign: "center",
-          }}>
-            <h1 style={{ 
-              fontSize: "2.5rem", 
-              fontFamily: "Arial",
-              fontWeight: 800, 
-              color: "white", 
-              marginBottom: "1rem" 
-            }}>
-              Experience the <span style={{ color: "#f97316", fontStyle: 'italic' }}>Madness</span>
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Experience the <span className="hero-highlight">Madness</span>
             </h1>
-            <p style={{ 
-              fontSize: "1.5rem", 
-              fontFamily: "Arial",
-              color: "white", 
-              maxWidth: "40rem", 
-              margin: "0 auto", 
-            }}>
+            <p className="hero-description">
               Join the ultimate college basketball tournament experience. Sign up or Log in to compete
               with fans nationwide.
             </p>
@@ -167,115 +88,58 @@ export default function Home() {
         </section>
 
         {/* Tournament Information*/}
-        <section style={{ 
-          background: "linear-gradient(to bottom,rgba(249, 116, 22, 0.97),rgba(234, 90, 12, 0.92))", 
-          padding: "3rem 0",
-          width: "100%",
-          margin: 0
-        }}>
+        <section className="tournament-section">
           {/* Content */}
-          <div style={{ width: "100%"}}>
-            <h2 style={{ 
-              fontSize: "2.5rem", 
-              fontFamily: "Arial",
-              fontWeight: "bold", 
-              color: "white", 
-              textAlign: "center", 
-              margin: "0 0 6rem 0"
-            }}>Tournament Highlights</h2>
+          <div>
+            <h2 className="tournament-header">Tournament Highlights</h2>
 
-            <div style={{ 
-              display: "grid", 
-              gap: "2rem", 
-              maxWidth: "50%", 
-              margin: "0 auto",
-            }}>
-
+            <div className="tournament-grid">
               {/* Cards */}
 
               {/* Key Dates */}
-              <div style={{ 
-                backgroundColor: "rgba(255, 255, 255, 0.06)", 
-                borderRadius: "0.7rem", 
-                padding: "1rem", 
-                color: "white" 
-              }}>
-
+              <div className="card">
                 {/* Icon */}
-                <div style={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.15)", 
-                  borderRadius: "10px", 
-                  width: "3.5rem", 
-                  height: "3.5rem", 
-                  display: "flex", 
-                  alignItems: "center", 
-                  justifyContent: "center", 
-                }}>
+                <div className="card-icon">
                   <Calendar style={{ height: "2rem", width: "2rem", color: "white" }} />
                 </div>
-                <h3 style={{ fontSize: "1.25rem", fontFamily: "Arial",fontWeight: "bold", fontStyle: "italic", marginBottom: "0.75rem" }}>Key Dates</h3>
-                <ul style={{ 
-                  display: "flex", 
-                  flexDirection: "column", 
-                  gap: "0.8rem",
-                  padding: 0,
-                  listStyle: "none"
-                }}>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                <h3 className="card-title">Key Dates</h3>
+                <ul className="card-list">
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>Selection Sunday:</span> March 12, 2025
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>First Four:</span> March 14-15, 2025
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>First Round:</span> March 16-17, 2025
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>Final Four:</span> April 1, 2025
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>Championship:</span> April 3, 2025
                   </li>
                 </ul>
               </div>
 
               {/* Prizes */}
-              <div style={{ 
-                backgroundColor: "rgba(255, 255, 255, 0.06)", 
-                borderRadius: "0.7rem", 
-                padding: "1rem", 
-                color: "white" 
-              }}>
+              <div className="card">
                 {/* Icon */}
-                <div style={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.15)", 
-                  borderRadius: "10px", 
-                  width: "3.5rem", 
-                  height: "3.5rem", 
-                  display: "flex", 
-                  alignItems: "center", 
-                  justifyContent: "center", 
-                }}>
+                <div className="card-icon">
                   <Trophy style={{ height: "2rem", width: "2rem", color: "white" }} />
                 </div>
-                <h3 style={{ fontSize: "1.25rem", fontFamily: "Arial",fontWeight: "bold", fontStyle: "italic", marginBottom: "0.75rem" }}>Prizes</h3>
-                <ul style={{ 
-                  display: "flex", 
-                  flexDirection: "column", 
-                  gap: "0.5rem",
-                  padding: 0,
-                  listStyle: "none"
-                }}>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                <h3 className="card-title">Prizes</h3>
+                <ul className="card-list">
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>1st Place:</span> $1,000 Gift Card
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>2nd Place:</span> $500 Gift Card
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>3rd Place:</span> $250 Gift Card
                   </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "Arial" }}>
+                  <li className="card-list-item">
                     <span style={{ fontWeight: "600" }}>Perfect Bracket:</span> $10,000 Grand Prize
                   </li>
                 </ul>
@@ -285,19 +149,10 @@ export default function Home() {
         </section>
 
         {/* Bracket */}
-        <section style={{ 
-          backgroundColor: "#001440", 
-          width: "100%",
-        }}>
-          <div style={{ width: "100%", minHeight:"95vh" }}>
-            <h2 style={{ 
-              fontSize: "2rem",
-              fontFamily: "Arial", 
-              fontWeight: "bold", 
-              color: "white", 
-              textAlign: "center", 
-            }}>Teams</h2>
-            <p style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontFamily: "Arial", fontSize: "1rem", margin: "0 0 2rem 0" }}> 
+        <section className="bracket-section">
+          <div className="bracket-wrapper">
+            <h2 className="bracket-title">Teams</h2>
+            <p className="bracket-subtitle"> 
               Click on any match block and place your bets!
             </p>
             <MarchMadnessBracket />
@@ -305,30 +160,19 @@ export default function Home() {
         </section>
 
         {/* Website Footer */}
-        <footer style={{ 
-          backgroundColor: "black", 
-          fontFamily: "Arial",
-          color: "white", 
-          padding: "1.5rem 0",
-          width: "100%",
-        }}>
-          <div style={{ width: "100%"}}>
+        <footer className="footer">
+          <div>
             <div style={{ 
               display: "flex", 
               flexDirection: "column", 
               justifyContent: "space-between", 
               alignItems: "center" 
             }}>
-              <div style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                gap: "0.5rem", 
-                marginBottom: "1rem" 
-              }}>
+              <div className="footer-logo">
                 <CircleDollarSign style={{ height: "1.5rem", width: "1.5rem", color: "#ED7014" }} />
                 <span style={{ fontWeight: "bold" }}>Nets and Bets</span>
               </div>
-              <div style={{ color: "white", fontSize: "0.875rem" }}>
+              <div className="footer-text">
                 2025 March Madness. All rights reserved.
               </div>
             </div>

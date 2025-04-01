@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {CircleDollarSign as Money} from 'lucide-react';
 import { AuthContext } from './Context/AuthContext';
+import './Login.css';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -89,40 +90,10 @@ const Login = () => {
   };
 
   return (
-    <div 
-      style={{ 
-        backgroundImage: `url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2070')`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        minHeight: '100vh',
-        width: '100vw',
-        margin: 0,
-        padding: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: 'hidden'
-      }}
-    >
+    <div className= "login-background">
       {/* Login card */}
-      <div 
-        style={{
-          backgroundColor: '#808080CC', 
-          borderRadius: '18px',
-          boxShadow: '0 28px 52px -10px rgba(0, 0, 0, 0.9)',
-          padding: '35px',
-          width: '100%',
-          maxWidth: '500px',
-          border: '2px solid #9CA3AF',
-          zIndex: 10
-        }}
-      >
-        <div style={{ margin: '0', padding: '0', display: 'flex', justifyContent: 'center', marginTop: '-5px' }}>
+      <div className='login-card'>
+        <div className='login-header'>
             <p style={{ 
               background: 'linear-gradient(to right, #FF8C00, #FFA500, #FFD700)',
               fontFamily: "Impact, Arial Black, sans-serif", 
@@ -141,9 +112,9 @@ const Login = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ marginTop: '26px', marginRight:"20px", width: '100%' }}>
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="username" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+          <form onSubmit={handleSubmit} className='login-form'>
+            <div className='login-form-group'>
+              <label htmlFor="username" className='login-label'>
                 Username
               </label>
               <input
@@ -153,20 +124,12 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required
-                style={{
-                  backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                  fontFamily: "Arial",
-                  color: 'white',
-                  padding: '12px',
-                  borderRadius: '10px',
-                  width: '100%',
-                  border: '1px solid rgb(211, 87, 9)',
-                }}
+                className='login-input'
               />
             </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label htmlFor="password" style={{ color: 'white', fontWeight: '700', fontFamily: "Arial", marginBottom: '6px', display: 'block' }}>
+            <div className='login-form-group'>
+              <label htmlFor="password" className='login-label'>
                 Password
               </label>
               <div style={{ position: 'relative' }}>
@@ -178,29 +141,12 @@ const Login = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  style={{
-                    backgroundColor: 'rgba(22, 28, 39, 0.8)',
-                    fontFamily: "Arial",
-                    color: 'white',
-                    padding: '12px',
-                    borderRadius: '10px',
-                    width: '100%',
-                    border: '1px solid rgb(211, 87, 9)',
-                  }}
+                  className='login-input'
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  style={{
-                    position: 'absolute',
-                    left: '95%',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: '#9CA3AF',
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '14px'
-                  }}
+                  className='password-toggle-btn'
                 >
                   {showPassword ? 'Hide' : 'Show'}
                 </button>
@@ -210,40 +156,29 @@ const Login = () => {
             {/*Displays submit button which is disabled when logging in*/}
             <button 
               type="submit" 
-              style={{
-                width: '105%',
-                backgroundColor: '#FF5F1F',
-                color: 'white',
-                padding: '10px',
-                borderRadius: '10px',
-                fontWeight: 'bold',
-                fontSize: '18px',
-                border: 'none',
-                boxShadow: '0 4px 6px -1px rgba(1, 1, 1, 0.1)',
-                marginTop: '16px'
-              }}
+              className='login-submit-btn'
               disabled={isLoggingIn}
             >
               {isLoggingIn ? 'Logging In!!' : 'Log In'}
             </button>
         </form>
 
-        <div style={{ textAlign: 'center', width: '100%', marginTop: '20px', }}>
-          <p style={{ color: 'white', fontFamily: "Arial" }}>
-            <span style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginBottom: '7px' }}>
-              <Money style={{color: "green", height: "30px", width: "50px"}}/>
-              <Money style={{color: "green", height: "30px", width: "50px"}} />
-              <Money style={{color: "green", height: "30px", width: "50px"}} />
-              <Money style={{color: "green", height: "30px", width: "50px"}} />
+        <div className='login-footer'>
+          <p className='login-footer-text'>
+            <span className='money-icons'>
+              <Money className='icon'/>
+              <Money className='icon'/>
+              <Money className='icon'/>
+              <Money className='icon'/>
             </span>
             Don't have an account?{" "}
-            <Link to="/signup" style={{ color: '#FF5F1F', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+            <Link to="/signup" className='login-footer-link'>
               Sign up
             </Link>
           </p>
-          <p style={{ color: 'white', fontFamily: "Arial", marginTop: "2px" }}>
+          <p className='login-footer-text'>
             Go back?{" "}
-            <Link to="/" style={{ color: '#FF5F1F', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+            <Link to="/" className='login-footer-link'>
               Home
             </Link>
           </p>
@@ -252,7 +187,6 @@ const Login = () => {
     </div>
   );
 };
-
 
 
 export default Login;
