@@ -400,13 +400,21 @@
     
   }
   
+  /* bet selected button */
   .bet-button.selected {
     background-color: rgb(116, 69, 233);
   }
   
+  /* disabled bet button */
   .bet-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
+  /* disbaled checkout */
+  .checkout-button:disabled {
+    background-color: #24b03c;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
  

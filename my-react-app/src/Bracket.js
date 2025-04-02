@@ -435,7 +435,8 @@ const shouldDisableBet = (betType, team, value) => {
               
               {/* Checkout button */}
               <div className="checkout-section">
-                <button className="checkout-button" onClick={() => console.log("Checkout clicked")}>
+                <button className="checkout-button" 
+                disabled={!selectedBet}>
                   CHECKOUT
                 </button>
               </div>
@@ -520,8 +521,6 @@ const shouldDisableBet = (betType, team, value) => {
       </div>
     );
   };
-
-  
 
   return <BracketView />;
 };
