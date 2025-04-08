@@ -310,6 +310,12 @@ const shouldDisableBet = (betType, team, value) => {
               spacer
             </div>
           </div>
+          {/* Elite 8 Spacer (to keep alignment) */}
+          <div className="round elite-8">
+            <div className="bracket-box elite" style={{ visibility: 'hidden' }}>
+              spacer
+            </div>
+          </div>
         </div>
       </div>
     );
