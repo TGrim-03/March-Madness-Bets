@@ -165,25 +165,29 @@ const MarchMadnessBracket = () => {
           </div>
 
           <div className="round round-2">
-            <div className="bracket-box top">
-              {secondRoundTop?.[0]?.teamA?.name} <br /> {secondRoundTop?.[0]?.teamB?.name}
-            </div>
-            <div className="bracket-box bottom">
-              {secondRoundBottom?.[0]?.teamA?.name} <br /> {secondRoundBottom?.[0]?.teamB?.name}
-            </div>
+          <div className="bracket-box top" onClick={() => onMatchupClick(secondRoundTop[0])}>
+            {secondRoundTop?.[0]?.teamA?.name} <br /> {secondRoundTop?.[0]?.teamB?.name}
           </div>
+          <div className="bracket-box bottom" onClick={() => onMatchupClick(secondRoundBottom[0])}>
+            {secondRoundBottom?.[0]?.teamA?.name} <br /> {secondRoundBottom?.[0]?.teamB?.name}
+          </div>
+        </div>
 
-          <div className="round sweet-16">
-            <div className="bracket-box">
-              {sweet16Top?.name} <br /> {sweet16Bottom?.name}
-            </div>
+        <div className="round sweet-16">
+          <div className="bracket-box" onClick={() => onMatchupClick({
+            teamA: sweet16Top,
+            teamB: sweet16Bottom
+          })}>
+            {sweet16Top?.name} <br /> {sweet16Bottom?.name}
           </div>
+        </div>
 
-          <div className="round elite-8">
-            <div className="bracket-box elite">
-              {elite8Matchup?.teamA?.name} <br /> {elite8Matchup?.teamB?.name}
-            </div>
+
+        <div className="round elite-8">
+          <div className="bracket-box elite" onClick={() => onMatchupClick(elite8Matchup)}>
+            {elite8Matchup?.teamA?.name} <br /> {elite8Matchup?.teamB?.name}
           </div>
+        </div>
         </div>
 
         {/* Bottom Half */}
@@ -194,20 +198,24 @@ const MarchMadnessBracket = () => {
             ))}
           </div>
 
+         
           <div className="round round-2">
-            <div className="bracket-box top">
+            <div className="bracket-box top" onClick={() => onMatchupClick(secondRoundTopBottom[0])}>
               {secondRoundTopBottom?.[0]?.teamA?.name} <br /> {secondRoundTopBottom?.[0]?.teamB?.name}
             </div>
-            <div className="bracket-box bottom">
+            <div className="bracket-box bottom" onClick={() => onMatchupClick(secondRoundBottomBottom[0])}>
               {secondRoundBottomBottom?.[0]?.teamA?.name} <br /> {secondRoundBottomBottom?.[0]?.teamB?.name}
             </div>
           </div>
 
           <div className="round sweet-16">
-            <div className="bracket-box">
-              {sweet16TopBottom?.name} <br /> {sweet16BottomBottom?.name}
-            </div>
+          <div className="bracket-box" onClick={() => onMatchupClick({
+            teamA: sweet16TopBottom,
+            teamB: sweet16BottomBottom
+          })}>
+            {sweet16TopBottom?.name} <br /> {sweet16BottomBottom?.name}
           </div>
+        </div>
 
           <div className="round elite-8">
             <div className="bracket-box elite" style={{ visibility: 'hidden' }}>
@@ -263,49 +271,48 @@ const MarchMadnessBracket = () => {
             </div>
           );
           case 'FinalFour':
-        const semifinal1Matchup = {
-          teamA: southRegion.winner,
-          teamB: westRegion.winner
-        };
+          const semifinal1Matchup = {
+            teamA: southRegion.winner,
+            teamB: westRegion.winner
+          };
 
-        const semifinal2Matchup = {
-          teamA: eastRegion.winner,
-          teamB: midwestRegion.winner
-        };
+          const semifinal2Matchup = {
+            teamA: eastRegion.winner,
+            teamB: midwestRegion.winner
+          };
 
-        const finalMatchup = {
-          teamA: getWinner(semifinal1Matchup.teamA, semifinal1Matchup.teamB),
-          teamB: getWinner(semifinal2Matchup.teamA, semifinal2Matchup.teamB)
-        };
+          const finalMatchup = {
+            teamA: getWinner(semifinal1Matchup.teamA, semifinal1Matchup.teamB),
+            teamB: getWinner(semifinal2Matchup.teamA, semifinal2Matchup.teamB)
+          };
 
-        return (
-          <div className="final-four-section">
-            <h2 className="finals-title">FINAL FOUR</h2>
+          return (
+            <div className="final-four-section">
+              <h2 className="finals-title">FINAL FOUR</h2>
 
-            <div className="semifinals-container">
-              <div className="semifinal-box">
-                <p>{semifinal1Matchup.teamA?.name || 'South Winner'}</p>
-                <p>vs</p>
-                <p>{semifinal1Matchup.teamB?.name || 'Midwest Winner'}</p>
+              <div className="semifinals-container">
+                <div className="semifinal-box" onClick={() => handleMatchupClick(semifinal1Matchup)}>
+                  <p>{semifinal1Matchup.teamA?.name || 'South Winner'}</p>
+                  <p>vs</p>
+                  <p>{semifinal1Matchup.teamB?.name || 'West Winner'}</p>
+                </div>
+                <div className="semifinal-box" onClick={() => handleMatchupClick(semifinal2Matchup)}>
+                  <p>{semifinal2Matchup.teamA?.name || 'East Winner'}</p>
+                  <p>vs</p>
+                  <p>{semifinal2Matchup.teamB?.name || 'Midwest Winner'}</p>
+                </div>
               </div>
-              <div className="semifinal-box">
-                <p>{semifinal2Matchup.teamA?.name || 'East Winner'}</p>
-                <p>vs</p>
-                <p>{semifinal2Matchup.teamB?.name || 'West Winner'}</p>
+
+              <div className="championship-container">
+                <h2 className="finals-title">NATIONAL CHAMPIONSHIP</h2>
+                <div className="championship-box" onClick={() => handleMatchupClick(finalMatchup)}>
+                  <p>{finalMatchup.teamA?.name || 'Semifinal #1 Winner'}</p>
+                  <p>vs</p>
+                  <p>{finalMatchup.teamB?.name || 'Semifinal #2 Winner'}</p>
+                </div>
               </div>
             </div>
-
-            <div className="championship-container">
-              <h2 className="finals-title">NATIONAL CHAMPIONSHIP</h2>
-              <div className="championship-box">
-                <p>{finalMatchup.teamA?.name || 'Semifinal #1 Winner'}</p>
-                <p>vs</p>
-                <p>{finalMatchup.teamB?.name || 'Semifinal #2 Winner'}</p>
-              </div>
-            </div>
-          </div>
-        );
-
+          );
         default:
           return null;
       }
