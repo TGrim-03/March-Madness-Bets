@@ -110,30 +110,38 @@ const MarchMadnessBracket = () => {
     const round1MatchupsTop = region.firstRound.slice(0, 4);
     const round1MatchupsBottom = region.firstRound.slice(4, 8);
 
-    const getWinner = (teamA, teamB, roundIndex) => {
-      const teamAWins = teamA?.winsPerRound?.split(',').map(Number);
-      const teamBWins = teamB?.winsPerRound?.split(',').map(Number);
-      if (teamAWins?.[roundIndex] === 1) return teamA;
-      if (teamBWins?.[roundIndex] === 1) return teamB;
-      return null;
+    const getWinner = (teamA, teamB) => {
+      const teamAWins = teamA?.winsPerRound?.split(',').map(Number) || [];
+      const teamBWins = teamB?.winsPerRound?.split(',').map(Number) || [];
+    
+      const teamAWinsTotal = teamAWins.reduce((sum, val) => sum + val, 0);
+      const teamBWinsTotal = teamBWins.reduce((sum, val) => sum + val, 0);
+    
+      if (teamAWinsTotal > teamBWinsTotal) return teamA;
+      if (teamBWinsTotal > teamAWinsTotal) return teamB;
+    
+      return null; // if tied
     };
 
     // Second Round Winners
-    const secondRoundTop = [{ teamA: getWinner(round1MatchupsTop?.[0]?.teamA, round1MatchupsTop?.[0]?.teamB, 0), teamB: getWinner(round1MatchupsTop?.[1]?.teamA, round1MatchupsTop?.[1]?.teamB, 0) }];
-    const secondRoundBottom = [{ teamA: getWinner(round1MatchupsTop?.[2]?.teamA, round1MatchupsTop?.[2]?.teamB, 0), teamB: getWinner(round1MatchupsTop?.[3]?.teamA, round1MatchupsTop?.[3]?.teamB, 0) }];
-    const secondRoundTopBottom = [{ teamA: getWinner(round1MatchupsBottom?.[0]?.teamA, round1MatchupsBottom?.[0]?.teamB, 0), teamB: getWinner(round1MatchupsBottom?.[1]?.teamA, round1MatchupsBottom?.[1]?.teamB, 0) }];
-    const secondRoundBottomBottom = [{ teamA: getWinner(round1MatchupsBottom?.[2]?.teamA, round1MatchupsBottom?.[2]?.teamB, 0), teamB: getWinner(round1MatchupsBottom?.[3]?.teamA, round1MatchupsBottom?.[3]?.teamB, 0) }];
+    const secondRoundTop = [{ teamA: getWinner(round1MatchupsTop?.[0]?.teamA, round1MatchupsTop?.[0]?.teamB), teamB: getWinner(round1MatchupsTop?.[1]?.teamA, round1MatchupsTop?.[1]?.teamB) }];
+    const secondRoundBottom = [{ teamA: getWinner(round1MatchupsTop?.[2]?.teamA, round1MatchupsTop?.[2]?.teamB), teamB: getWinner(round1MatchupsTop?.[3]?.teamA, round1MatchupsTop?.[3]?.teamB) }];
+    const secondRoundTopBottom = [{ teamA: getWinner(round1MatchupsBottom?.[0]?.teamA, round1MatchupsBottom?.[0]?.teamB), teamB: getWinner(round1MatchupsBottom?.[1]?.teamA, round1MatchupsBottom?.[1]?.teamB) }];
+    const secondRoundBottomBottom = [{ teamA: getWinner(round1MatchupsBottom?.[2]?.teamA, round1MatchupsBottom?.[2]?.teamB), teamB: getWinner(round1MatchupsBottom?.[3]?.teamA, round1MatchupsBottom?.[3]?.teamB) }];
 
     // Sweet 16 Winners
-    const sweet16Top = getWinner(secondRoundTop?.[0]?.teamA, secondRoundTop?.[0]?.teamB, 1);
-    const sweet16Bottom = getWinner(secondRoundBottom?.[0]?.teamA, secondRoundBottom?.[0]?.teamB, 1);
-    const sweet16TopBottom = getWinner(secondRoundTopBottom?.[0]?.teamA, secondRoundTopBottom?.[0]?.teamB, 1);
-    const sweet16BottomBottom = getWinner(secondRoundBottomBottom?.[0]?.teamA, secondRoundBottomBottom?.[0]?.teamB, 1);
+    const sweet16Top = getWinner(secondRoundTop[0].teamA, secondRoundTop[0].teamB);
 
-    // Elite 8 (directly based on Sweet 16 winners)
+    const sweet16Bottom = getWinner(secondRoundBottom?.[0]?.teamA, secondRoundBottom?.[0]?.teamB);
+    const sweet16TopBottom = getWinner(secondRoundTopBottom?.[0]?.teamA, secondRoundTopBottom?.[0]?.teamB);
+    const sweet16BottomBottom = getWinner(secondRoundBottomBottom?.[0]?.teamA, secondRoundBottomBottom?.[0]?.teamB);
+
+    const elite8Top = getWinner(sweet16Top, sweet16Bottom);
+    const elite8Bottom = getWinner(sweet16TopBottom, sweet16BottomBottom);
+
     const elite8Matchup = {
-      teamA: sweet16Top,
-      teamB: sweet16TopBottom
+      teamA: elite8Top,
+      teamB: elite8Bottom
     };
 
     return (
