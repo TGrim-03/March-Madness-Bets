@@ -107,6 +107,8 @@ const MarchMadnessBracket = () => {
     firstRound: createFirstRoundMatchups(region.teams)
   }));
 
+ 
+
   const MatchupBox = ({ teamA, teamB, onClick }) => (
     <div className="matchup-box" onClick={onClick}>
       <div className="team-row team-a">
