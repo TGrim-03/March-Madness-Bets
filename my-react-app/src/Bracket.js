@@ -69,7 +69,7 @@ const MarchMadnessBracket = () => {
     return null; // if tied
   };
 
-  
+
   const handleMatchupClick = (matchup) => {
     setSelectedMatchup(matchup);
     setSelectedBet(null);
@@ -228,12 +228,13 @@ const MarchMadnessBracket = () => {
   
 
   const BracketView = () => {
-    
-    const renderActive = () => {
-      const westRegion = BracketRegion({ region: regions[0], onMatchupClick: handleMatchupClick });
+    const westRegion = BracketRegion({ region: regions[0], onMatchupClick: handleMatchupClick });
       const eastRegion = BracketRegion({ region: regions[1], onMatchupClick: handleMatchupClick, reversed: true });
       const southRegion = BracketRegion({ region: regions[2], onMatchupClick: handleMatchupClick });
       const midwestRegion = BracketRegion({ region: regions[3], onMatchupClick: handleMatchupClick, reversed: true });
+    
+    const renderActive = () => {
+      
       switch (active) {
         case 'WestEast':
           return (
@@ -262,45 +263,53 @@ const MarchMadnessBracket = () => {
             </div>
           );
           case 'FinalFour':
-            const finalMatchup = {
-              teamA: getWinner(westRegion.winner, midwestRegion.winner),
-              teamB: getWinner(eastRegion.winner, southRegion.winner)
-            };
-          
-            return (
-              <div className="final-four-section">
-                <h2 className="finals-title">FINAL FOUR</h2>
-          
-                <div className="semifinals-container">
-                  <div className="semifinal-box">
-                    <p>{westRegion.winner?.name || 'West Winner'}</p>
-                    <p>vs</p>
-                    <p>{midwestRegion.winner?.name || 'Midwest Winner'}</p>
-                  </div>
-                  <div className="semifinal-box">
-                    <p>{eastRegion.winner?.name || 'East Winner'}</p>
-                    <p>vs</p>
-                    <p>{southRegion.winner?.name || 'South Winner'}</p>
-                  </div>
-                </div>
-          
-                <div className="championship-container">
-                  <h2 className="finals-title">NATIONAL CHAMPIONSHIP</h2>
-                  <div className="championship-box">
-                    <p>{finalMatchup.teamA?.name || 'Semifinal #1 Winner'}</p>
-                    <p>vs</p>
-                    <p>{finalMatchup.teamB?.name || 'Semifinal #2 Winner'}</p>
-                  </div>
-                </div>
+        const semifinal1Matchup = {
+          teamA: southRegion.winner,
+          teamB: westRegion.winner
+        };
+
+        const semifinal2Matchup = {
+          teamA: eastRegion.winner,
+          teamB: midwestRegion.winner
+        };
+
+        const finalMatchup = {
+          teamA: getWinner(semifinal1Matchup.teamA, semifinal1Matchup.teamB),
+          teamB: getWinner(semifinal2Matchup.teamA, semifinal2Matchup.teamB)
+        };
+
+        return (
+          <div className="final-four-section">
+            <h2 className="finals-title">FINAL FOUR</h2>
+
+            <div className="semifinals-container">
+              <div className="semifinal-box">
+                <p>{semifinal1Matchup.teamA?.name || 'South Winner'}</p>
+                <p>vs</p>
+                <p>{semifinal1Matchup.teamB?.name || 'Midwest Winner'}</p>
               </div>
-            );
+              <div className="semifinal-box">
+                <p>{semifinal2Matchup.teamA?.name || 'East Winner'}</p>
+                <p>vs</p>
+                <p>{semifinal2Matchup.teamB?.name || 'West Winner'}</p>
+              </div>
+            </div>
+
+            <div className="championship-container">
+              <h2 className="finals-title">NATIONAL CHAMPIONSHIP</h2>
+              <div className="championship-box">
+                <p>{finalMatchup.teamA?.name || 'Semifinal #1 Winner'}</p>
+                <p>vs</p>
+                <p>{finalMatchup.teamB?.name || 'Semifinal #2 Winner'}</p>
+              </div>
+            </div>
+          </div>
+        );
+
         default:
           return null;
       }
     };
-
-   
-
     return (
        
       <div className="bracket-container">
