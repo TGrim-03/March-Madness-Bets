@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Bet;
 import com.example.demo.model.MarchMadnessTeam;
 import com.example.demo.model.User;
+import com.example.demo.repository.BetRepository;
 import com.example.demo.repository.MarchMadnessTeamRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.MarchMadnessScraper;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +46,9 @@ public class MainController {
 
     @Autowired
     private MarchMadnessScraper scraper;
+
+    @Autowired
+    private BetRepository betRepository;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -145,7 +151,7 @@ public class MainController {
      * @param username the username of the given user
      * @return the user entity if it exists, or null if there does not exist a user with the given username
      */
-    @GetMapping(path="/user")
+    @GetMapping(path="/user/{username}")
     public @ResponseBody Optional<User> getUserByUsername(@RequestParam String username) {
         return userRepository.findByUsername(username);
     }
@@ -219,7 +225,19 @@ public class MainController {
             user.setAmount(user.getAmount() - betAmt);
             userRepository.save(user);
 
-            // TODO: Save the bet to a table 
+            double odds = ((Number) betInfo.get("odds")).doubleValue();
+            double amountToWin = ((Number) betInfo.get("amountToWin")).doubleValue();
+
+            // Make a new Bet object and set its appropriate fields
+            Bet bet = new Bet();
+            bet.setUserId(user.getId());
+            bet.setTeamsPlaying((String) betInfo.get("matchup"));
+            bet.setBettingOdds(odds);
+            bet.setAmountBet(betAmt);
+            bet.setAmountToWin(amountToWin);
+            bet.setStatus("In Progress");
+
+            betRepository.save(bet); // Save the bet
 
             return ResponseEntity.ok(Map.of(
                 "message", "Bet placed successfully",
@@ -229,4 +247,5 @@ public class MainController {
             return ResponseEntity.badRequest().body("Error placing bet: " + e.getMessage());
         }
     }
+
 }
