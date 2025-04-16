@@ -316,23 +316,23 @@ const MarchMadnessBracket = () => {
 
               <div className="semifinals-container">
                 <div className="semifinal-box" onClick={() => handleMatchupClick(semifinal1Matchup)}>
-                  <p>{semifinal1Matchup.teamA?.name || 'South Winner'}</p>
-                  <p>vs</p>
-                  <p>{semifinal1Matchup.teamB?.name || 'West Winner'}</p>
+                <p>{semifinal1Matchup.teamA ? `${semifinal1Matchup.teamA.seed}. ${semifinal1Matchup.teamA.name}` : 'South Winner'}</p>
+                <p>vs</p>
+                <p>{semifinal1Matchup.teamB ? `${semifinal1Matchup.teamB.seed}. ${semifinal1Matchup.teamB.name}` : 'West Winner'}</p>
                 </div>
                 <div className="semifinal-box" onClick={() => handleMatchupClick(semifinal2Matchup)}>
-                  <p>{semifinal2Matchup.teamA?.name || 'East Winner'}</p>
-                  <p>vs</p>
-                  <p>{semifinal2Matchup.teamB?.name || 'Midwest Winner'}</p>
+                <p>{semifinal2Matchup.teamA ? `${semifinal2Matchup.teamA.seed}. ${semifinal2Matchup.teamA.name}` : 'East Winner'}</p>
+                <p>vs</p>
+                <p>{semifinal2Matchup.teamB ? `${semifinal2Matchup.teamB.seed}. ${semifinal2Matchup.teamB.name}` : 'Midwest Winner'}</p>
                 </div>
               </div>
 
               <div className="championship-container">
                 <h2 className="finals-title">NATIONAL CHAMPIONSHIP</h2>
                 <div className="championship-box" onClick={() => handleMatchupClick(finalMatchup)}>
-                  <p>{finalMatchup.teamA?.name || 'Semifinal #1 Winner'}</p>
-                  <p>vs</p>
-                  <p>{finalMatchup.teamB?.name || 'Semifinal #2 Winner'}</p>
+                <p>{finalMatchup.teamA ? `${finalMatchup.teamA.seed}. ${finalMatchup.teamA.name}` : 'Semifinal #1 Winner'}</p>
+                <p>vs</p>
+                <p>{finalMatchup.teamB ? `${finalMatchup.teamB.seed}. ${finalMatchup.teamB.name}` : 'Semifinal #2 Winner'}</p>
                 </div>
               </div>
             </div>
