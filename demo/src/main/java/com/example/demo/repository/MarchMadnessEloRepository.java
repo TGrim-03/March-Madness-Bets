@@ -4,6 +4,8 @@ import com.example.demo.model.MarchMadnessElo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Repository interface for managing {@link MarchMadnessElo} entity.
  * 
@@ -15,10 +17,9 @@ import org.springframework.stereotype.Repository;
 public interface MarchMadnessEloRepository extends JpaRepository<MarchMadnessElo, Long> {
 
     /**
-     * Checks if a team with the given name already exists in the database.
      *
-     * @param name The name of the team to check.
-     * @return {@code true} if a team with the given name exists, otherwise {@code false}.
+     * @param id id of the team
+     * @return An {@link Optional} containing the MarchMadnessElo if found, or null if not found.
      */
-    boolean existsByName(String name);
+    Optional<MarchMadnessElo> findEloById(Long id);
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.MarchMadnessElo;
 import com.example.demo.model.MarchMadnessTeam;
 import com.example.demo.model.User;
 import com.example.demo.repository.MarchMadnessTeamRepository;
@@ -178,6 +179,17 @@ public class MainController {
     @GetMapping(path="/teams")
     public @ResponseBody List<MarchMadnessTeam> getAllTeams() {
         return marchMadnessTeamRepository.findAll();
+    }
+
+    /**
+     * Finds and returns a specific team's ELO in the MySQL Database by their unique id
+     *
+     * @param id the id of the given team
+     * @return the entity if it exists, or null if there does not exist an entry with the given id
+     */
+    @GetMapping(path="/teamElo")
+    public @ResponseBody Optional<MarchMadnessElo> getEloById(@RequestParam Long id) {
+        return marchMadnessTeamEloRepository.findEloById(id);
     }
 
 }
