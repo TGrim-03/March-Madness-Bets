@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.MarchMadnessTeam;
 import com.example.demo.model.User;
 import com.example.demo.repository.MarchMadnessTeamRepository;
+import com.example.demo.repository.MarchMadnessEloRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.MarchMadnessScraper;
 
@@ -40,6 +41,9 @@ public class MainController {
 
     @Autowired
     private MarchMadnessTeamRepository marchMadnessTeamRepository;
+
+    @Autowired
+    private MarchMadnessEloRepository marchMadnessTeamEloRepository;
 
     @Autowired
     private MarchMadnessScraper scraper;
@@ -175,4 +179,5 @@ public class MainController {
     public @ResponseBody List<MarchMadnessTeam> getAllTeams() {
         return marchMadnessTeamRepository.findAll();
     }
+
 }
