@@ -8,22 +8,23 @@ services:
   backend:
     build: ./demo
     environment:
-      - DB_HOST=db
+      - DB_HOST=db2
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
-      - db
-  db:
-    image: mysql/mysql-server:latest
+      - db2
+  db2:
+    image: 1d9c2219ff69
     restart: always
     environment:
       MYSQL_DATABASE: P14MySQL
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: splunge
     volumes:
-      - my-db:/var/lib/mysql
+      - my-db-2:/var/lib/mysql
     ports:
       - "127.0.0.1:3306:3306"
 
 volumes:
-  my-db:
+  my-db-2:
+
