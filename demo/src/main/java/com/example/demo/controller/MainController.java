@@ -339,9 +339,9 @@ public class MainController {
      * @return A list of bets placed by user
      */
     @Operation(summary = "Get bets", description = "Gets all the bets placed by a user")
-    @ApiResponse(responseCode = "200", description = "All of user's bets",
-            content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = Bet.class))))
+    @ApiResponse(responseCode = "200", description = "All of user's bets", 
+                content = @Content(mediaType = "application/json", 
+                array = @ArraySchema(schema = @Schema(implementation = Bet.class))))
     @GetMapping(path="/userbets")
     public @ResponseBody List<Bet> getBets(@RequestParam Long userId) {
         return betRepository.findByUserId(userId);
