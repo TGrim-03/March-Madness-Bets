@@ -467,10 +467,10 @@
   }
 
   .team-logo {
-    width: 60px;       /* or whatever fits your design */
-    height: 50px;
+    width: 70px;       
+    height: 60px;
     object-fit: contain;
-    margin-right: 6px; /* space between logo and text */
+    margin-right: 10px; 
     vertical-align: middle;
   }
   
