@@ -467,6 +467,13 @@ const MarchMadnessBracket = () => {
                 <h3 className="region-title">East Region</h3>
                 {eastRegion.element}
               </div>
+              <div className="ncaa-logo-container">
+              <img 
+                src="/logos/ncaa.png" 
+                alt="NCAA Logo" 
+                className="ncaa-logo"
+              />
+            </div>
             </div>
           );
         case 'SouthMidwest':

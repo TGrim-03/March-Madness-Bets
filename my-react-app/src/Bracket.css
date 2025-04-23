@@ -475,4 +475,18 @@
   }
   
   
-  
+  /* NCAA logo in center of bracket */
+.ncaa-logo-container {
+  position: absolute;
+  width: 150px;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 80px;
+}
+
+.ncaa-logo {
+  width: 100px;
+  height: 100px;
+}
