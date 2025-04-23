@@ -465,5 +465,13 @@
     padding-left: 10px;
     text-align: left; 
   }
+
+  .team-logo {
+    width: 60px;       /* or whatever fits your design */
+    height: 50px;
+    object-fit: contain;
+    margin-right: 6px; /* space between logo and text */
+    vertical-align: middle;
+  }
   
 
