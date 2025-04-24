@@ -9,6 +9,7 @@ stages:
 build:
   stage: build
   script:
+    - cd ./demo
     - mvn clean install -DskipTests
   artifacts:
     paths:
