@@ -26,6 +26,7 @@ build-frontend-job:
     - echo "Navigating to the frontend folder..."
     - cd ./my-react-app
     - echo "Building frontend code..."
+    - unset CI
     - npm run build
     - echo "Build complete"
   artifacts:
