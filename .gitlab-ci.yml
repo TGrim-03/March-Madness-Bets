@@ -1,7 +1,38 @@
 stages:
+  - install
   - build
   - test
   - deploy
+
+# Install frontend dependencies
+install-frontend-dependencies:
+  stage: install
+  image: node:20
+  script:
+    - echo "navigating to the frontend folder..."
+    - cd ./my-react-app
+    - echo "Installing frontend dependencies..."
+    - npm ci
+    - echo "Install complete"
+  artifacts:
+    paths:
+      - node_modules/
+
+# Build the React app
+build-frontend-job:
+  stage: build
+  image: node:20
+  script:
+    - echo "Navigating to the frontend folder..."
+    - cd ./my-react-app
+    - echo "Building frontend code..."
+    - npm run build
+    - echo "Build complete"
+  artifacts:
+    paths:
+      - build/
+  dependencies:
+    - install-frontend-dependencies
 
 build-job:
   stage: build
