@@ -1,3 +1,54 @@
+# March Madness Bets Web App
+
+Web application for users to place bets and check bet status using fake money.
+
+NOTE: Website is not fully functional due to augmenting code for virtual machine hosting, which has been lost due to school requirements.
+
+## Overview
+2–4 sentences explaining:
+- Creates a website for users to bet for free/practice betting for March Madness basketball
+- For users who want to bet on college basketball games without the need to spend money
+- Full-stack application hosted on a virtual machine via docker containers
+
+## My Role
+
+**Type:** Team project (6 members)
+
+### My Contributions
+- Created backend endpoints to communicate to frontend and MySQL database
+- Containerized the application to be hosted locally via docker containers
+- Transitioned the application to be hosted on a virtual machine via docker containers
+
+## Tech Stack
+- Frontend: JavaScript, CSS
+- Backend: Java, Spring Boot, Maven
+- Database: MySQL relational database
+- Other Tools: Docker
+
+## Key Features
+- User account login/signup
+- March Madness Bracket with custom algorithm for odds
+- Bet feature that updates bets ~1 minute after bet is placed
+- Website scraper to populate team bracket
+
+## Challenges & Learnings
+- Issues with communication between backend and database communication after containerizing the application
+- Learned patience and troubleshooting strategies, communication, and agile/scrum principles
+
+## Running the Project
+(Optional but recommended)
+
+```bash
+git clone https://github.com/TGrim-03/March-Madness-Bets.git
+```
+Run the compose.yml file either via IDE or the following command:
+
+```bash
+docker compose up
+```
+
+## Original README file:
+
 <p align="center" style="font-size: 30px;">
   <b>Net Bets Specification Document<b>
 </p>
@@ -130,10 +181,11 @@ graph TD;
 
 #### Start frontend and backend 
 * Backend
+  * Use IDE or `./mvnw spring-boot:run`
+
+* Frontend
   * `npm start`
   * may have to install additional packages such as lucide-react and create-react-app ex: `npm install lucide-react`
-* Frontend
-  * Use IDE or `./mvnw spring-boot:run`
 
 
 ### Contributors
