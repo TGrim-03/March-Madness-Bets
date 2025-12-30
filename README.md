@@ -5,7 +5,6 @@ Web application for users to place bets and check bet status using fake money.
 NOTE: Website is not fully functional due to augmenting code for virtual machine hosting, which has been lost due to school requirements.
 
 ## Overview
-2–4 sentences explaining:
 - Creates a website for users to bet for free/practice betting for March Madness basketball
 - For users who want to bet on college basketball games without the need to spend money
 - Full-stack application hosted on a virtual machine via docker containers
@@ -36,7 +35,6 @@ NOTE: Website is not fully functional due to augmenting code for virtual machine
 - Learned patience and troubleshooting strategies, communication, and agile/scrum principles
 
 ## Running the Project
-(Optional but recommended)
 
 ```bash
 git clone https://github.com/TGrim-03/March-Madness-Bets.git
